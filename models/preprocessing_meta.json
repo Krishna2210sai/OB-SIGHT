@@ -1,0 +1,37 @@
+{
+  "window_min": 30,
+  "target_fs": 1,
+  "window_samples": 1800,
+  "signal_channels": [
+    "fhr",
+    "uc",
+    "fhr_mask",
+    "uc_mask"
+  ],
+  "fhr_mean": 130.2454071044922,
+  "fhr_std": 24.637338638305664,
+  "uc_mean": 22.247514724731445,
+  "uc_std": 23.463838577270508,
+  "clinical_features": [
+    "age",
+    "gravidity",
+    "parity",
+    "gest_weeks",
+    "diabetes",
+    "hypertension",
+    "preeclampsia",
+    "liquor_praecox",
+    "pyrexia",
+    "meconium",
+    "induced",
+    "presentation_1",
+    "presentation_2",
+    "presentation_3",
+    "presentation_missing"
+  ],
+  "class_names": [
+    "Vaginal delivery",
+    "Cesarean delivery"
+  ],
+  "random_seed": 42
+}

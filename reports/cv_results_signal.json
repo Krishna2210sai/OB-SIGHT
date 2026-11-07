@@ -1,0 +1,86 @@
+{
+  "variant": "signal",
+  "n_splits": 5,
+  "pooled_auroc": 0.7627599243856333,
+  "pooled_auprc": 0.326727713084142,
+  "mean_auroc": 0.7695010677538342,
+  "std_auroc": 0.0394635436669243,
+  "mean_auprc": 0.38511162081229555,
+  "std_auprc": 0.12774499801158165,
+  "mean_accuracy": 0.8878787878787879,
+  "std_accuracy": 0.05085177338277523,
+  "config": {
+    "variant": "signal",
+    "epochs": 120,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "patience": 20,
+    "scheduler_patience": 8,
+    "dropout_noise": 0.03,
+    "seed": 42,
+    "num_workers": 0
+  },
+  "folds": [
+    {
+      "loss": 0.3341232240200043,
+      "accuracy": 0.8288288288288288,
+      "auroc": 0.7352941176470589,
+      "auprc": 0.3855884212755358,
+      "fold": 1,
+      "best_epoch": 7,
+      "n_train": 441,
+      "n_val": 111,
+      "pos_train": 37,
+      "pos_val": 9
+    },
+    {
+      "loss": 0.31057265400886536,
+      "accuracy": 0.8378378378378378,
+      "auroc": 0.8118811881188119,
+      "auprc": 0.2665873338090434,
+      "fold": 2,
+      "best_epoch": 7,
+      "n_train": 441,
+      "n_val": 111,
+      "pos_train": 36,
+      "pos_val": 10
+    },
+    {
+      "loss": 0.2685200273990631,
+      "accuracy": 0.9272727272727272,
+      "auroc": 0.7942794279427943,
+      "auprc": 0.6005005960679719,
+      "fold": 3,
+      "best_epoch": 12,
+      "n_train": 442,
+      "n_val": 110,
+      "pos_train": 37,
+      "pos_val": 9
+    },
+    {
+      "loss": 0.2976275086402893,
+      "accuracy": 0.9363636363636364,
+      "auroc": 0.7854785478547854,
+      "auprc": 0.3433982734254474,
+      "fold": 4,
+      "best_epoch": 12,
+      "n_train": 442,
+      "n_val": 110,
+      "pos_train": 37,
+      "pos_val": 9
+    },
+    {
+      "loss": 0.29836589097976685,
+      "accuracy": 0.9090909090909091,
+      "auroc": 0.7205720572057206,
+      "auprc": 0.32948347948347945,
+      "fold": 5,
+      "best_epoch": 8,
+      "n_train": 442,
+      "n_val": 110,
+      "pos_train": 37,
+      "pos_val": 9
+    }
+  ]
+}

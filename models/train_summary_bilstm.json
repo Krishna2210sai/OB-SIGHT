@@ -1,0 +1,22 @@
+{
+  "variant": "bilstm",
+  "train_size": 386,
+  "val_size": 83,
+  "train_positives": 32,
+  "val_positives": 7,
+  "n_parameters": 31009,
+  "best_epoch": 19,
+  "best_val_loss": 0.3338046371936798,
+  "config": {
+    "variant": "bilstm",
+    "epochs": 80,
+    "batch_size": 32,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "patience": 15,
+    "scheduler_patience": 8,
+    "dropout_noise": 0.03,
+    "seed": 42,
+    "num_workers": 0
+  }
+}

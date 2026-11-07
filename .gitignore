@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Environment
+.env
+.env.local
+
+# Raw dataset: download from PhysioNet and place it here; never commit it.
+ctu-chb-intrapartum-cardiotocography-database-1.0.0/
+
+# Generated data and artefacts. They can be rebuilt with the documented
+# pipeline, so they are not source files. Keep them locally for the demo.
+data/processed/
+logs/
+
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Local scratch files
+*.log
