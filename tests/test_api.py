@@ -278,6 +278,23 @@ def test_demo_prediction_includes_true_label_only_for_teaching(client):
     assert body["disclaimer"]
 
 
+def test_demo_prediction_can_use_the_cnn_bilstm(client, model_card):
+    cases = client.get("/demo-cases").json()
+    response = client.post(f"/demo/{cases[0]['record_id']}?model=bilstm")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["model_variant"] == "bilstm"
+    assert body["decision_threshold"] == pytest.approx(
+        model_card["evaluation"]["operating_points"]["bilstm"]
+    )
+
+
+def test_demo_prediction_rejects_unknown_model(client):
+    cases = client.get("/demo-cases").json()
+    response = client.post(f"/demo/{cases[0]['record_id']}?model=nope")
+    assert response.status_code == 422
+
+
 def test_unknown_demo_record_returns_404(client):
     assert client.post("/demo/does-not-exist").status_code == 404
 

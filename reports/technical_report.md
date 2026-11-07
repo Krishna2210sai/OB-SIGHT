@@ -329,7 +329,7 @@ FastAPI application (`backend/main.py`) with Pydantic schemas (`backend/schemas.
 | `POST /predict` | clinical-only prediction (JSON) |
 | `POST /predict-ctg` | multimodal prediction (multipart form + CSV/JSON CTG) |
 | `GET /demo-cases` | held-out teaching cases |
-| `POST /demo/{record_id}` | prediction + true label for a teaching case |
+| `POST /demo/{record_id}?model=` | prediction + true label for a teaching case (`multimodal` or `bilstm`) |
 | `GET /api/sample/{name}` | downloadable sample CTG files |
 | `GET /` and SPA fallback | serves the built React app when `frontend/dist` exists |
 
@@ -346,8 +346,8 @@ Validation and safety:
 
 React 19 + Vite, mobile-first, with five views:
 
-- **Dashboard:** service status, task summary, quick links, safety notice.
-- **Assessment:** clinical form, optional CTG upload, sample downloads, demo cases.
+- **Dashboard:** service status, two separate prediction-model cards (multimodal and CNN-BiLSTM) with held-out metrics and direct assessment links, the full comparison table, and the safety notice.
+- **Assessment:** explicit model choice (multimodal, CNN-BiLSTM, or clinical-only), per-model metric chips, clinical form, optional CTG upload, sample downloads, and demo cases scored with the selected CTG model.
 - **Result:** probability meter, decision, threshold, warnings, clinical and signal attributions.
 - **Model Card:** dataset, architecture, metrics, limitations, intended/prohibited use.
 - **History:** locally stored session predictions with an explicit “not a medical record” notice.
@@ -358,7 +358,7 @@ The production build is served by FastAPI; during development Vite proxies API r
 
 ## 9. Testing and reproducibility
 
-- **Automated tests:** 91 pytest tests covering dataset parsing, preprocessing, leakage, model shapes/checkpoints, the CNN-BiLSTM architecture, metrics, paired bootstrap comparison, CTG file validation (including CTG-model selection), API contracts, error handling, demo records, and sample downloads.
+- **Automated tests:** 93 pytest tests covering dataset parsing, preprocessing, leakage, model shapes/checkpoints, the CNN-BiLSTM architecture, metrics, paired bootstrap comparison, CTG file validation (including CTG-model selection), API contracts, error handling, demo records (including model selection), and sample downloads.
 - **Frontend:** production build via `npm run build`.
 - **Seed:** 42 for split, training, and bootstrap resampling.
 - **Environment:** Python 3.12.5, PyTorch 2.8.0 (CPU), NumPy 2.1.2, scikit-learn 1.6.0, FastAPI 0.156.2, Pydantic 2.13.1, Node 24.15.0.

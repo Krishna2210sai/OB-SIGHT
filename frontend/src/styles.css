@@ -2068,3 +2068,95 @@ code {
     break-inside: avoid;
   }
 }
+
+/* Model selection cards (dashboard) */
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.model-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.model-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.model-card-head h3 {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+}
+
+.model-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.model-card-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+  margin: 4px 0 6px;
+}
+
+.model-card-metrics div {
+  background: var(--surface-2);
+  border-radius: 9px;
+  padding: 7px 6px;
+  text-align: center;
+}
+
+.model-card-metrics dt {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--muted);
+}
+
+.model-card-metrics dd {
+  margin: 2px 0 0;
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.92rem;
+}
+
+.model-card .btn {
+  align-self: flex-start;
+}
+
+/* Inline metric chips in the assessment form */
+.model-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: -6px 0 16px;
+}
+
+.model-metrics span {
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.model-metrics strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 600px) {
+  .model-card-metrics {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

@@ -136,7 +136,13 @@ export default function Result() {
         <div>
           <span className="meta-label">Input mode</span>
           <span className="meta-value">
-            {entry.mode === "ctg" ? "Clinical + CTG" : entry.mode === "demo" ? "Held-out demo record" : "Clinical only"}
+            {entry.mode === "demo"
+              ? "Held-out demo record"
+              : entry.mode === "clinical"
+              ? "Clinical only"
+              : entry.mode === "bilstm"
+              ? "CTG only"
+              : "Clinical + CTG"}
           </span>
         </div>
         <div>

@@ -199,9 +199,14 @@ def demo_cases() -> List[DemoCaseSummary]:
 
 
 @app.post("/demo/{record_id}", response_model=DemoPredictionResponse)
-def demo(record_id: str) -> DemoPredictionResponse:
+def demo(record_id: str, model: str = "multimodal") -> DemoPredictionResponse:
+    if model not in CTG_MODEL_VARIANTS:
+        raise HTTPException(
+            status_code=422,
+            detail=f"Unknown CTG model '{model}'. Choose one of: {', '.join(sorted(CTG_MODEL_VARIANTS))}.",
+        )
     try:
-        result = get_service().predict_demo(record_id)
+        result = get_service().predict_demo(record_id, variant=model)
     except KeyError:
         raise HTTPException(status_code=404, detail="Demo record not found in the held-out test split")
     except ModelUnavailableError as exc:

@@ -369,7 +369,7 @@ class ModelService:
             )
         return cases
 
-    def predict_demo(self, record_id: str) -> dict:
+    def predict_demo(self, record_id: str, variant: str = "multimodal") -> dict:
         self._load_demo()
         assert self._demo_frame is not None
         frame = self._demo_frame
@@ -394,9 +394,9 @@ class ModelService:
         }
         signal = self._demo_signals[i]
         vector = self._demo_clinical[i]
-        logit, _, _ = self._logit("multimodal", signal, vector)
+        logit, _, _ = self._logit(variant, signal, vector)
         result = self._response(
-            "multimodal", logit, vector, signal, clinical,
+            variant, logit, vector, signal, clinical,
             warnings=["Demonstration record from the public research dataset; the true outcome is shown for teaching only."],
         )
         result["demo"] = True

@@ -22,7 +22,7 @@ The system is built on the public **CTU-CHB Intrapartum Cardiotocography Databas
 | Evaluation | Held-out test + stratified 5-fold CV + bootstrap CIs + paired AUC comparison |
 | Backend | FastAPI + Pydantic, CSV/JSON CTG uploads |
 | Frontend | React 19 + Vite, mobile-first |
-| Tests | 91 pytest tests |
+| Tests | 93 pytest tests |
 
 **Headline result (held-out test, 7 cesareans / 76 vaginal):** the CTG-only 1D CNN achieved ROC-AUC 0.797 (95% CI 0.660–0.914); the multimodal model achieved 0.733 (0.551–0.910); the new CTG-only CNN-BiLSTM achieved 0.720 (0.453–0.938) but the highest PR-AUC (0.450). The paired AUC difference between the CNN-BiLSTM and the 1D CNN was −0.077 (95% CI −0.331 to +0.167), so the experiment does not establish a statistically meaningful improvement. At validation-selected thresholds, the multimodal model detected 3/7 cesareans with 12/76 false positives. A majority-class classifier reaches 91.6% accuracy while detecting no cesareans. These results are exploratory, imprecise, and not clinically usable. See `reports/model_evaluation_report.md` and `reports/technical_report.md`.
 
@@ -141,6 +141,8 @@ Open:
 - health check: <http://127.0.0.1:8000/health>
 
 FastAPI serves `frontend/dist` when it exists. If you have not built the frontend, `/` returns a small JSON status message and the API still works.
+
+The Dashboard lists the **Multimodal CNN + clinical MLP** and the **CTG-only CNN-BiLSTM** as two separate model cards with their own held-out metrics and “Use this model” links. The Assessment page exposes them as separate top-level choices (`/assess?model=multimodal` or `/assess?model=bilstm`), alongside the clinical-only model. Held-out demo cases are scored with whichever CTG model is selected.
 
 ### 4.4 Frontend development mode
 
@@ -323,7 +325,7 @@ Upload constraints: CSV/JSON only, maximum 5 MB, at least 10 minutes of recordin
 
 ```bash
 curl http://127.0.0.1:8000/demo-cases
-curl -X POST http://127.0.0.1:8000/demo/2005
+curl -X POST "http://127.0.0.1:8000/demo/2005?model=bilstm"
 ```
 
 Demo records come from the held-out public test split: 14 cases, 7 vaginal and 7 cesarean. The assessment page shows 6 at a time with a control to reveal the rest. True labels are shown only for teaching and are never model inputs.
@@ -351,7 +353,7 @@ The suite covers:
 - CTG CSV/JSON validation and rejection paths;
 - API contracts, thresholds, error codes, demo records, sample downloads, and static hosting.
 
-Expected result with the included artefacts: **91 passed**. The tests do not modify the original dataset.
+Expected result with the included artefacts: **93 passed**. The tests do not modify the original dataset.
 
 ---
 

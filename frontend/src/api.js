@@ -56,8 +56,9 @@ export function predictWithCTG(formData) {
   return request("/predict-ctg", { method: "POST", body: formData });
 }
 
-export function predictDemo(recordId) {
-  return request(`/demo/${encodeURIComponent(recordId)}`, { method: "POST" });
+export function predictDemo(recordId, model = "multimodal") {
+  const query = model ? `?model=${encodeURIComponent(model)}` : "";
+  return request(`/demo/${encodeURIComponent(recordId)}${query}`, { method: "POST" });
 }
 
 export const sampleUrl = (name) => `${API_BASE}/api/sample/${name}`;

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { getDemoCases, predictClinical, predictDemo, predictWithCTG, sampleUrl } from "../api.js";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { getDemoCases, getMetrics, predictClinical, predictDemo, predictWithCTG, sampleUrl } from "../api.js";
 import ClinicalForm, { EMPTY_FORM, SAMPLE_FORM, toPayload, validateClinical } from "../components/ClinicalForm.jsx";
 import { Badge, ErrorNote, Spinner, useDocumentTitle } from "../components/UI.jsx";
 import { saveHistory } from "../history.js";
@@ -8,6 +8,15 @@ import { IconAlert, IconChevron, IconDownload } from "../components/Icons.jsx";
 
 const MAX_BYTES = 5 * 1024 * 1024;
 const DEMO_PREVIEW_COUNT = 6;
+
+const MODE_NOTES = {
+  multimodal:
+    "Multimodal CNN + clinical MLP: 30-minute CTG window, signal-quality masks and maternal variables.",
+  bilstm:
+    "CTG-only CNN-BiLSTM: 30-minute CTG tensor; maternal fields are collected but ignored by this model.",
+  clinical:
+    "Clinical-only MLP: uses only the maternal variables. In held-out testing this model did not discriminate better than chance (ROC-AUC ≈ 0.50)."
+};
 
 function validateFile(file) {
   if (!file) return "Choose a CTG file to upload";
@@ -41,11 +50,17 @@ function riskCount(clinical) {
   ).length;
 }
 
+const ASSESS_MODES = ["multimodal", "bilstm", "clinical"];
+
 export default function Assess() {
   useDocumentTitle("New assessment");
   const navigate = useNavigate();
-  const [mode, setMode] = useState("ctg");
-  const [ctgModel, setCtgModel] = useState("multimodal");
+  const [searchParams] = useSearchParams();
+  const requestedMode = searchParams.get("model");
+  const [mode, setMode] = useState(
+    ASSESS_MODES.includes(requestedMode) ? requestedMode : "multimodal"
+  );
+  const [metrics, setMetrics] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [errors, setErrors] = useState({});
   const [file, setFile] = useState(null);
@@ -63,7 +78,24 @@ export default function Assess() {
     getDemoCases()
       .then((cases) => setDemoCases(interleave(cases)))
       .catch((err) => setDemoError(err.message));
+    getMetrics()
+      .then(setMetrics)
+      .catch(() => setMetrics(null));
   }, []);
+
+  const activeSummary = (() => {
+    const key = mode === "bilstm" ? "bilstm_dl" : mode === "multimodal" ? "multimodal_dl" : "clinical_dl";
+    const entry = metrics?.models?.[key];
+    if (!entry) return null;
+    const operating = entry.at_tuned_threshold || entry.calibrated || entry.raw;
+    return {
+      auc: operating.auroc,
+      ap: operating.auprc,
+      sensitivity: operating.recall_sensitivity,
+      specificity: operating.specificity,
+      threshold: entry.tuned_threshold,
+    };
+  })();
 
   const storeAndGo = (payload, modeUsed, extra = {}) => {
     const entry = {
@@ -105,7 +137,7 @@ export default function Assess() {
       first?.focus();
       return;
     }
-    if (mode === "ctg") {
+    if (mode !== "clinical") {
       const message = validateFile(file);
       setFileError(message);
       if (message) return;
@@ -123,10 +155,10 @@ export default function Assess() {
           data.append(key, String(value));
         }
         data.append("fs", String(Number(fs) || 4));
-        data.append("model", ctgModel);
+        data.append("model", mode);
         data.append("file", file);
         const result = await predictWithCTG(data);
-        storeAndGo(result, "ctg");
+        storeAndGo(result, mode);
       }
     } catch (err) {
       setSubmitError(err.message);
@@ -143,8 +175,8 @@ export default function Assess() {
     setDemoError("");
     setDemoBusy(recordId);
     try {
-      const result = await predictDemo(recordId);
-      storeAndGo(result, "demo", { demoId: recordId });
+      const result = await predictDemo(recordId, mode === "clinical" ? "multimodal" : mode);
+      storeAndGo(result, "demo", { demoId: recordId, model: mode });
     } catch (err) {
       setDemoError(err.message);
     } finally {
@@ -169,15 +201,24 @@ export default function Assess() {
 
       <div className="assess-layout">
         <form className="card assess-form" onSubmit={handleSubmit} noValidate>
-          <div className="segmented" role="tablist" aria-label="Assessment mode">
+          <div className="segmented" role="tablist" aria-label="Prediction model">
             <button
               type="button"
               role="tab"
-              aria-selected={mode === "ctg"}
-              className={mode === "ctg" ? "segment active" : "segment"}
-              onClick={() => setMode("ctg")}
+              aria-selected={mode === "multimodal"}
+              className={mode === "multimodal" ? "segment active" : "segment"}
+              onClick={() => setMode("multimodal")}
             >
-              Clinical + CTG
+              Multimodal + CTG
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === "bilstm"}
+              className={mode === "bilstm" ? "segment active" : "segment"}
+              onClick={() => setMode("bilstm")}
+            >
+              CNN-BiLSTM
             </button>
             <button
               type="button"
@@ -190,43 +231,31 @@ export default function Assess() {
             </button>
           </div>
 
-          {mode === "ctg" ? (
-            <>
-              <div className="segmented" role="tablist" aria-label="CTG prediction model">
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={ctgModel === "multimodal"}
-                  className={ctgModel === "multimodal" ? "segment active" : "segment"}
-                  onClick={() => setCtgModel("multimodal")}
-                >
-                  Multimodal CNN + MLP
-                </button>
-                <button
-                  type="button"
-                  role="tab"
-                  aria-selected={ctgModel === "bilstm"}
-                  className={ctgModel === "bilstm" ? "segment active" : "segment"}
-                  onClick={() => setCtgModel("bilstm")}
-                >
-                  CNN-BiLSTM
-                </button>
-              </div>
-              <p className="mode-note">
-                {ctgModel === "multimodal"
-                  ? "Multimodal model: 30-minute CTG window, signal-quality masks and maternal variables."
-                  : "CTG-only CNN-BiLSTM: 30-minute CTG tensor; maternal fields are collected but ignored by this model."}
-              </p>
-            </>
-          ) : (
-            <p className="mode-note">
-              Uses the clinical-only model. In held-out testing this model did not discriminate better than chance (ROC-AUC ≈ 0.50).
-            </p>
-          )}
+          <p className="mode-note">{MODE_NOTES[mode]}</p>
+
+          {activeSummary ? (
+            <div className="model-metrics" aria-label="Selected model held-out performance">
+              <span>
+                <strong>{activeSummary.auc.toFixed(3)}</strong> ROC-AUC
+              </span>
+              <span>
+                <strong>{activeSummary.ap.toFixed(3)}</strong> PR-AUC
+              </span>
+              <span>
+                <strong>{activeSummary.sensitivity.toFixed(2)}</strong> sensitivity
+              </span>
+              <span>
+                <strong>{activeSummary.specificity.toFixed(2)}</strong> specificity
+              </span>
+              <span>
+                <strong>{activeSummary.threshold.toFixed(2)}</strong> threshold
+              </span>
+            </div>
+          ) : null}
 
           <ClinicalForm form={form} onChange={setForm} errors={errors} disabled={busy} />
 
-          {mode === "ctg" ? (
+          {mode !== "clinical" ? (
             <fieldset className="form-section" disabled={busy}>
               <legend>Cardiotocography recording</legend>
               <div
@@ -317,13 +346,16 @@ export default function Assess() {
         </form>
 
         <aside className="assess-aside">
+          {mode !== "clinical" ? (
           <section className="card">
             <h2>Held-out demonstration cases</h2>
             <p className="section-note">
               {demoCases.length
                 ? `${demoCases.length} public, de-identified records from the fixed test split. `
                 : "Public, de-identified records from the fixed test split. "}
-              The true outcome is revealed only on the result page, for teaching.
+              Each case is scored with the currently selected model
+              ({mode === "bilstm" ? "CNN-BiLSTM" : "multimodal"}); the true outcome is
+              revealed only on the result page, for teaching.
             </p>
             {demoError ? <ErrorNote message={demoError} /> : null}
             {!demoCases.length && !demoError ? <Spinner label="Loading cases" /> : null}
@@ -364,6 +396,7 @@ export default function Assess() {
               </button>
             ) : null}
           </section>
+          ) : null}
 
           <section className="callout callout-info">
             <h2>Before you interpret a score</h2>

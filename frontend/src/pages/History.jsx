@@ -5,6 +5,8 @@ import { loadHistory, clearHistory, deleteHistoryEntry } from "../history.js";
 import { IconTrash } from "../components/Icons.jsx";
 
 const MODE_LABELS = {
+  multimodal: "Multimodal (Clinical + CTG)",
+  bilstm: "CNN-BiLSTM (CTG only)",
   ctg: "Clinical + CTG",
   clinical: "Clinical only",
   demo: "Demo record"

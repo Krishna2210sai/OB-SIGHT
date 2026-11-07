@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { getMetrics, getModelInfo } from "../api.js";
 import MetricsTable from "../components/MetricsTable.jsx";
-import { ErrorNote, LoadingBlock, useDocumentTitle } from "../components/UI.jsx";
+import { Badge, ErrorNote, LoadingBlock, useDocumentTitle } from "../components/UI.jsx";
 import { useEffect } from "react";
 import { IconAssess, IconChevron, IconInfo } from "../components/Icons.jsx";
 
@@ -132,6 +132,86 @@ export default function Dashboard() {
             <p>A calibrated probability, a fixed threshold, and gradient-based attributions that describe model behaviour.</p>
           </li>
         </ol>
+      </section>
+
+      <section className="section">
+        <div className="section-head">
+          <div>
+            <h2>Prediction models</h2>
+            <p>Both CTG models are available separately in the assessment flow.</p>
+          </div>
+        </div>
+        <div className="model-grid">
+          {[
+            {
+              key: "multimodal_dl",
+              mode: "multimodal",
+              title: "Multimodal CNN + clinical MLP",
+              label: "Multimodal",
+              tone: "teal",
+              tag: "flagship",
+              description:
+                "Combines the 30-minute CTG tensor with maternal clinical variables through a late-fusion head."
+            },
+            {
+              key: "bilstm_dl",
+              mode: "bilstm",
+              title: "CTG-only CNN-BiLSTM",
+              label: "CTG only",
+              tone: "amber",
+              tag: "temporal",
+              description:
+                "Uses only the CTG tensor; a bidirectional LSTM models temporal context in both directions."
+            }
+          ].map((model) => {
+            const entry = metrics?.models?.[model.key];
+            const operating = entry
+              ? entry.at_tuned_threshold || entry.calibrated || entry.raw
+              : null;
+            return (
+              <article className="card model-card" key={model.key}>
+                <div className="model-card-head">
+                  <div>
+                    <span className="eyebrow">{model.label}</span>
+                    <h3>{model.title}</h3>
+                  </div>
+                  <Badge tone={model.tone}>{model.tag}</Badge>
+                </div>
+                <p>{model.description}</p>
+                <dl className="model-card-metrics">
+                  <div>
+                    <dt>ROC-AUC</dt>
+                    <dd>{operating ? operating.auroc.toFixed(3) : "—"}</dd>
+                  </div>
+                  <div>
+                    <dt>PR-AUC</dt>
+                    <dd>{operating ? operating.auprc.toFixed(3) : "—"}</dd>
+                  </div>
+                  <div>
+                    <dt>Sensitivity</dt>
+                    <dd>{operating ? operating.recall_sensitivity.toFixed(2) : "—"}</dd>
+                  </div>
+                  <div>
+                    <dt>Specificity</dt>
+                    <dd>{operating ? operating.specificity.toFixed(2) : "—"}</dd>
+                  </div>
+                  <div>
+                    <dt>Threshold</dt>
+                    <dd>
+                      {entry?.tuned_threshold != null ? entry.tuned_threshold.toFixed(2) : "—"}
+                    </dd>
+                  </div>
+                </dl>
+                <Link
+                  className="btn btn-secondary btn-small"
+                  to={`/assess?model=${model.mode}`}
+                >
+                  Use this model <IconChevron size={16} />
+                </Link>
+              </article>
+            );
+          })}
+        </div>
       </section>
 
       <section className="section">
