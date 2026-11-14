@@ -1,0 +1,4 @@
+record_id,label,split,window_min,target_fs,reason
+1361,0,train,45,1.0,recording shorter than 45 minutes
+2025,1,train,45,1.0,recording shorter than 45 minutes
+2030,1,train,45,1.0,recording shorter than 45 minutes

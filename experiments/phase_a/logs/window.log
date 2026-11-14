@@ -1,0 +1,12 @@
+2026-11-13 23:05:09,440 INFO Building configuration w30_fs1
+2026-11-13 23:05:31,681 INFO   469 records usable, 0 excluded
+2026-11-13 23:05:31,686 INFO   CV w30_fs1_logistic_none
+2026-11-13 23:05:48,594 INFO   CV w30_fs1_gradient_boosting_none
+2026-11-13 23:06:12,486 INFO Building configuration w45_fs1
+2026-11-13 23:06:41,891 INFO   466 records usable, 3 excluded
+2026-11-13 23:06:41,898 INFO   CV w45_fs1_logistic_none
+2026-11-13 23:06:58,331 INFO   CV w45_fs1_gradient_boosting_none
+2026-11-13 23:07:19,726 INFO Building configuration w60_fs1
+2026-11-13 23:07:53,905 INFO   438 records usable, 31 excluded
+2026-11-13 23:07:53,912 INFO   CV w60_fs1_logistic_none
+2026-11-13 23:08:10,225 INFO   CV w60_fs1_gradient_boosting_none

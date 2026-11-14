@@ -59,8 +59,13 @@ def _count_runs(mask: np.ndarray, min_len: int) -> int:
     return int(np.sum((ends - starts) >= min_len))
 
 
-def extract_ctg_features(window: Dict[str, np.ndarray], fs: int = TARGET_FS) -> Dict[str, float]:
-    """Compute descriptors from a 1 Hz window produced by ``extract_window``."""
+def extract_ctg_features(window: Dict[str, np.ndarray], fs: float = TARGET_FS) -> Dict[str, float]:
+    """Compute descriptors from a window produced by ``extract_window``.
+
+    ``fs`` may be fractional (for example 0.5 Hz in the Phase A sampling
+    experiments); filter sizes and peak distances are rounded to whole samples.
+    """
+    fs = float(fs)
     fhr = np.asarray(window["fhr"], dtype=np.float64)
     uc = np.asarray(window["uc"], dtype=np.float64)
     fhr_mask = np.asarray(window["fhr_mask"], dtype=np.float64) > 0
@@ -100,7 +105,7 @@ def extract_ctg_features(window: Dict[str, np.ndarray], fs: int = TARGET_FS) -> 
         fhr_i = np.full_like(fhr, 135.0)
 
     # 1-minute variability: mean within-minute SD of valid samples.
-    minute = fs * 60
+    minute = max(1, int(round(fs * 60)))
     n_min = len(fhr) // minute
     sds = []
     for k in range(n_min):
@@ -110,10 +115,10 @@ def extract_ctg_features(window: Dict[str, np.ndarray], fs: int = TARGET_FS) -> 
             sds.append(float(seg[seg_mask].std()))
     out["fhr_variability_sd_1min"] = float(np.mean(sds)) if sds else 0.0
 
-    baseline = median_filter(fhr_i, size=fs * 300, mode="nearest")
+    baseline = median_filter(fhr_i, size=max(1, int(round(fs * 300))), mode="nearest")
     deviation = fhr_i - baseline
-    smooth = uniform_filter1d(deviation, size=max(1, fs * 3))
-    min_len = fs * 15  # 15 seconds
+    smooth = uniform_filter1d(deviation, size=max(1, int(round(fs * 3))))
+    min_len = max(1, int(round(fs * 15)))  # 15 seconds
     acc = smooth > 15
     dec = smooth < -15
     deep = smooth < -30
@@ -133,7 +138,11 @@ def extract_ctg_features(window: Dict[str, np.ndarray], fs: int = TARGET_FS) -> 
         )
         idx = np.flatnonzero(uc_mask)
         uc_i = np.interp(np.arange(len(uc)), idx, uc[idx])
-        peaks, _ = find_peaks(uniform_filter1d(uc_i, size=5), height=20.0, distance=fs * 60)
+        peaks, _ = find_peaks(
+            uniform_filter1d(uc_i, size=max(1, int(round(fs * 5)))),
+            height=20.0,
+            distance=max(1, int(round(fs * 60))),
+        )
         out["uc_contraction_count"] = float(len(peaks))
     else:
         for name in ["uc_mean", "uc_std", "uc_max", "uc_p90", "uc_contraction_count"]:

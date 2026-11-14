@@ -35,5 +35,11 @@ Thumbs.db
 # Local scratch files
 *.log
 
+# Phase A window/feature caches are large but fully rebuildable
+experiments/phase_a/cache/
+# Keep the Phase A execution logs even though *.log is ignored globally
+!experiments/phase_a/logs/
+!experiments/phase_a/logs/*.log
+
 # Unrelated local course documents
 /w*.docx

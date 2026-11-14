@@ -1,0 +1,7 @@
+2026-11-14 00:32:57,883 INFO Auditing 552 records at native 4 Hz
+2026-11-14 00:33:08,087 INFO   audited 100/552
+2026-11-14 00:33:18,466 INFO   audited 200/552
+2026-11-14 00:33:26,710 INFO   audited 300/552
+2026-11-14 00:33:35,260 INFO   audited 400/552
+2026-11-14 00:33:42,489 INFO   audited 500/552
+2026-11-14 00:33:53,030 INFO Quality categories: {'acceptable': 267, 'poor': 196, 'good': 89}; window support: {'30m': 552, '45m': 548, '60m': 511}

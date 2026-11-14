@@ -1,0 +1,13 @@
+{
+  "window_minutes": 30,
+  "target_fs": 1.0,
+  "anti_aliasing": "4th-order zero-phase Butterworth low-pass before decimation",
+  "cutoff_hz": {
+    "fhr": 0.4,
+    "uc": 0.2
+  },
+  "n_records": 469,
+  "n_cesarean": 39,
+  "n_excluded": 0,
+  "seed": 42
+}

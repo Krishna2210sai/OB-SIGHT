@@ -1,0 +1,35 @@
+{
+  "window_minutes": 45,
+  "target_fs": 1.0,
+  "policy": "exclude",
+  "n_records": 466,
+  "n_cesarean": 37,
+  "n_excluded": 3,
+  "excluded": [
+    {
+      "record_id": "1361",
+      "label": 0,
+      "split": "train",
+      "window_min": 45,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 45 minutes"
+    },
+    {
+      "record_id": "2025",
+      "label": 1,
+      "split": "train",
+      "window_min": 45,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 45 minutes"
+    },
+    {
+      "record_id": "2030",
+      "label": 1,
+      "split": "train",
+      "window_min": 45,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 45 minutes"
+    }
+  ],
+  "seed": 42
+}

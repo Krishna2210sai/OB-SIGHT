@@ -1,0 +1,44 @@
+{
+  "note": "Descriptive sensitivity analysis only. No record is removed from the main experiments. Fisher's exact test compares outcome counts inside and outside each subset; SMD is the absolute standardised mean difference.",
+  "subsets": [
+    {
+      "subset": "all",
+      "n_records": 469,
+      "n_cesarean": 39,
+      "prevalence": 0.08315565031982942,
+      "n_excluded": 0,
+      "n_excluded_cesarean": 0,
+      "fisher_exact_p_class_balance": NaN,
+      "smd_duration": NaN,
+      "smd_fhr_missing": NaN,
+      "cv_auroc": 0.7449016100178891,
+      "cv_auprc": 0.33814757321973066
+    },
+    {
+      "subset": "good_or_acceptable",
+      "n_records": 301,
+      "n_cesarean": 28,
+      "prevalence": 0.09302325581395349,
+      "n_excluded": 168,
+      "n_excluded_cesarean": 11,
+      "fisher_exact_p_class_balance": 0.3835946116354667,
+      "smd_duration": 0.4291953276438852,
+      "smd_fhr_missing": 1.1461006733105383,
+      "cv_auroc": 0.718341182626897,
+      "cv_auprc": 0.38654541578781076
+    },
+    {
+      "subset": "good_only",
+      "n_records": 78,
+      "n_cesarean": 10,
+      "prevalence": 0.1282051282051282,
+      "n_excluded": 391,
+      "n_excluded_cesarean": 29,
+      "fisher_exact_p_class_balance": 0.11893430181607004,
+      "smd_duration": 0.2651293804511528,
+      "smd_fhr_missing": 1.3621352731978917,
+      "cv_auroc": 0.6220588235294117,
+      "cv_auprc": 0.31327808836372784
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "n_records": 552,
+  "categories": {
+    "acceptable": 267,
+    "poor": 196,
+    "good": 89
+  },
+  "category_by_label": {
+    "0": {
+      "acceptable": 246,
+      "good": 76,
+      "poor": 184
+    },
+    "1": {
+      "acceptable": 21,
+      "good": 13,
+      "poor": 12
+    }
+  },
+  "class_counts": {
+    "0": 506,
+    "1": 46
+  },
+  "duration_min": {
+    "mean": 70.19125150966184,
+    "median": 69.9125,
+    "min": 41.225,
+    "max": 90.08333333333333
+  },
+  "support_counts": {
+    "30m": 552,
+    "45m": 548,
+    "60m": 511
+  },
+  "support_by_label": {
+    "30m": {
+      "0": {
+        "1": 506
+      },
+      "1": {
+        "1": 46
+      }
+    },
+    "45m": {
+      "0": {
+        "0": 1,
+        "1": 505
+      },
+      "1": {
+        "0": 3,
+        "1": 43
+      }
+    },
+    "60m": {
+      "0": {
+        "0": 31,
+        "1": 475
+      },
+      "1": {
+        "0": 10,
+        "1": 36
+      }
+    }
+  },
+  "missingness": {
+    "fhr_missing_fraction_30m": {
+      "mean": 0.18386649557165863,
+      "median": 0.14680555555555558,
+      "p90": 0.41094444444444456,
+      "max": 0.9236111111111112
+    },
+    "uc_missing_fraction_30m": {
+      "mean": 0.2095136372785829,
+      "median": 0.11881944444444442,
+      "p90": 0.5276944444444445,
+      "max": 1.0
+    },
+    "fhr_zero_fraction_recording": {
+      "mean": 0.14242062611652664,
+      "median": 0.12736671549856887,
+      "p90": 0.28603452193366624,
+      "max": 0.49723958333333335
+    },
+    "uc_zero_fraction_recording": {
+      "mean": 0.15143537138996477,
+      "median": 0.11802606697609246,
+      "p90": 0.33519694856541027,
+      "max": 1.0
+    },
+    "longest_fhr_gap_min_30m": {
+      "mean": 1.7932971014492756,
+      "median": 0.6958333333333333,
+      "p90": 5.1754166666666706,
+      "max": 22.925
+    },
+    "longest_uc_gap_min_30m": {
+      "mean": 3.8519852053140093,
+      "median": 1.3166666666666667,
+      "p90": 11.41916666666667,
+      "max": 30.0
+    },
+    "implausible_fhr_fraction_30m": {
+      "mean": 9.057971014492753e-06,
+      "median": 0.0,
+      "p90": 0.0,
+      "max": 0.003611111111111111
+    },
+    "jump_fraction_30m": {
+      "mean": 0.00043932478172814597,
+      "median": 0.0,
+      "p90": 0.0015558038807657703,
+      "max": 0.006761948670662364
+    },
+    "flatline_fraction_30m": {
+      "mean": 0.002756719930632974,
+      "median": 0.0,
+      "p90": 0.0,
+      "max": 0.5
+    }
+  },
+  "std_positive_uc_below_0_1": 0,
+  "missingness_by_label": {
+    "fhr_missing_fraction_30m": {
+      "0": 0.1921,
+      "1": 0.0929
+    },
+    "uc_missing_fraction_30m": {
+      "0": 0.2151,
+      "1": 0.1478
+    },
+    "implausible_fhr_fraction_30m": {
+      "0": 0.0,
+      "1": 0.0
+    },
+    "jump_fraction_30m": {
+      "0": 0.0004,
+      "1": 0.0005
+    },
+    "flatline_fraction_30m": {
+      "0": 0.0022,
+      "1": 0.0092
+    }
+  },
+  "thresholds": {
+    "fhr_missing_good": 0.1,
+    "fhr_missing_acceptable": 0.3,
+    "uc_missing_good": 0.1,
+    "uc_missing_acceptable": 0.35,
+    "longest_gap_good_min": 2.0,
+    "longest_gap_acceptable_min": 10.0,
+    "implausible_good": 0.001,
+    "implausible_acceptable": 0.01,
+    "jump_rate_good": 0.003,
+    "jump_rate_acceptable": 0.006,
+    "flatline_good": 0.05,
+    "flatline_acceptable": 0.2,
+    "min_duration_good_min": 60.0,
+    "min_duration_acceptable_min": 30.0
+  },
+  "zero_encoding_evidence": {
+    "positive_uc_values_below_0.1": 0,
+    "minimum_positive_uc": 0.5,
+    "interpretation": "Exact zeros are treated as missing: FHR=0 is not physiological, the smallest positive UC value is 0.5, and zero runs are long and contiguous. No genuine 0.0 UC sample was observed."
+  },
+  "signal_availability": {
+    "records_with_uc_fully_missing_30m": 2,
+    "records_with_fhr_fully_missing_30m": 0,
+    "records_with_fhr_missing_gt_50pct_30m": 25,
+    "records_with_uc_missing_gt_50pct_30m": 66
+  },
+  "clinical_missing_fraction": {
+    "age": 0.0,
+    "gravidity": 0.007246376811594203,
+    "parity": 0.0,
+    "gest_weeks": 0.0,
+    "diabetes": 0.0,
+    "hypertension": 0.0,
+    "preeclampsia": 0.0,
+    "liquor_praecox": 0.0,
+    "pyrexia": 0.0,
+    "meconium": 0.0,
+    "presentation": 0.005434782608695652,
+    "induced": 0.0
+  },
+  "target": {
+    "n_missing": 0,
+    "counts": {
+      "0": 506,
+      "1": 46
+    },
+    "prevalence": 0.08333333333333333
+  },
+  "quality_reason_counts": {
+    "UC missing fraction": 132,
+    "FHR missing fraction": 111,
+    "longest UC gap (min)": 71,
+    "longest FHR gap (min)": 24,
+    "FHR jump fraction": 2,
+    "FHR flatline fraction": 2
+  }
+}

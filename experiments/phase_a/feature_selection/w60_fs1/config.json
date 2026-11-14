@@ -1,0 +1,308 @@
+{
+  "window_minutes": 60,
+  "target_fs": 1.0,
+  "n_records": 438,
+  "n_cesarean": 31,
+  "n_excluded": 31,
+  "feature_names": [
+    "age",
+    "gravidity",
+    "parity",
+    "gest_weeks",
+    "diabetes",
+    "hypertension",
+    "preeclampsia",
+    "liquor_praecox",
+    "pyrexia",
+    "meconium",
+    "induced",
+    "presentation_1",
+    "presentation_2",
+    "presentation_3",
+    "presentation_missing",
+    "fhr_mean",
+    "fhr_median",
+    "fhr_std",
+    "fhr_min",
+    "fhr_max",
+    "fhr_p5",
+    "fhr_p95",
+    "fhr_range",
+    "pct_fhr_below_110",
+    "pct_fhr_above_160",
+    "pct_fhr_below_100",
+    "pct_fhr_above_180",
+    "fhr_missing_fraction",
+    "fhr_variability_sd_1min",
+    "acceleration_count",
+    "deceleration_count",
+    "deep_deceleration_count",
+    "acceleration_fraction",
+    "deceleration_fraction",
+    "uc_mean",
+    "uc_std",
+    "uc_max",
+    "uc_p90",
+    "uc_contraction_count",
+    "uc_missing_fraction"
+  ],
+  "methods": [
+    "none",
+    "correlation",
+    "mutual_info",
+    "rfe",
+    "l1",
+    "rf_importance"
+  ],
+  "seed": 42,
+  "excluded": [
+    {
+      "record_id": 1052,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1060,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1064,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1083,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1108,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1119,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1165,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1178,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1223,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1225,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1262,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1281,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1282,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1284,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1293,
+      "label": 0,
+      "split": "val",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1345,
+      "label": 0,
+      "split": "val",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1349,
+      "label": 0,
+      "split": "val",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1356,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1361,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1396,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1425,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1429,
+      "label": 0,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 1440,
+      "label": 0,
+      "split": "val",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2006,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2013,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2014,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2025,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2030,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2034,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2035,
+      "label": 1,
+      "split": "train",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    },
+    {
+      "record_id": 2042,
+      "label": 1,
+      "split": "val",
+      "window_min": 60,
+      "target_fs": 1.0,
+      "reason": "recording shorter than 60 minutes"
+    }
+  ]
+}

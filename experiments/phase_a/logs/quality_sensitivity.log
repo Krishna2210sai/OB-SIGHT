@@ -1,0 +1,9 @@
+2026-11-13 23:54:49,041 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-13 23:57:13,973 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-13 23:58:12,802 INFO Quality sensitivity: [{'subset': 'all', 'n_records': 469, 'n_cesarean': 39, 'cv_auroc': 0.7449016100178891}, {'subset': 'good_or_acceptable', 'n_records': 301, 'n_cesarean': 28, 'cv_auroc': 0.718341182626897}, {'subset': 'good_only', 'n_records': 78, 'n_cesarean': 10, 'cv_auroc': 0.6220588235294117}]
+2026-11-14 00:00:02,783 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-14 00:00:51,658 INFO Quality sensitivity: [{'subset': 'all', 'n_records': 469, 'n_cesarean': 39, 'cv_auroc': 0.7449016100178891}, {'subset': 'good_or_acceptable', 'n_records': 301, 'n_cesarean': 28, 'cv_auroc': 0.718341182626897}, {'subset': 'good_only', 'n_records': 78, 'n_cesarean': 10, 'cv_auroc': 0.6220588235294117}]
+2026-11-14 00:03:07,304 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-14 00:03:51,552 INFO Quality sensitivity: [{'subset': 'all', 'n_records': 469, 'n_cesarean': 39, 'cv_auroc': 0.7449016100178891}, {'subset': 'good_or_acceptable', 'n_records': 301, 'n_cesarean': 28, 'cv_auroc': 0.718341182626897}, {'subset': 'good_only', 'n_records': 78, 'n_cesarean': 10, 'cv_auroc': 0.6220588235294117}]
+2026-11-14 09:54:06,398 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-14 09:54:46,933 INFO Quality sensitivity: [{'subset': 'all', 'n_records': 469, 'n_cesarean': 39, 'cv_auroc': 0.7449016100178891}, {'subset': 'good_or_acceptable', 'n_records': 301, 'n_cesarean': 28, 'cv_auroc': 0.718341182626897}, {'subset': 'good_only', 'n_records': 78, 'n_cesarean': 10, 'cv_auroc': 0.6220588235294117}]

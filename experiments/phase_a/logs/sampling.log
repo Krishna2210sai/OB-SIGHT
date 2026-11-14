@@ -1,0 +1,23 @@
+2026-11-13 23:09:18,850 INFO Building configuration w30_fs4
+2026-11-13 23:12:43,549 INFO   469 records usable, 0 excluded
+2026-11-13 23:12:43,556 INFO   CV w30_fs4_logistic_none
+2026-11-13 23:13:03,679 INFO   CV w30_fs4_gradient_boosting_none
+2026-11-13 23:13:30,411 INFO Building configuration w30_fs2
+2026-11-13 23:14:28,486 INFO   469 records usable, 0 excluded
+2026-11-13 23:14:28,494 INFO   CV w30_fs2_logistic_none
+2026-11-13 23:14:48,634 INFO   CV w30_fs2_gradient_boosting_none
+2026-11-13 23:22:20,472 INFO Loaded cached configuration w30_fs4 (469 records)
+2026-11-13 23:22:20,683 INFO   CV w30_fs4_logistic_none
+2026-11-13 23:28:06,961 INFO Loaded cached configuration w30_fs4 (469 records)
+2026-11-13 23:28:07,126 INFO   CV w30_fs4_logistic_none
+2026-11-13 23:28:30,115 INFO   CV w30_fs4_gradient_boosting_none
+2026-11-13 23:31:51,898 INFO Loaded cached configuration w30_fs2 (469 records)
+2026-11-13 23:31:51,963 INFO   CV w30_fs2_logistic_none
+2026-11-13 23:32:07,968 INFO   CV w30_fs2_gradient_boosting_none
+2026-11-13 23:33:53,164 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-13 23:33:53,171 INFO   CV w30_fs1_logistic_none
+2026-11-13 23:34:08,927 INFO   CV w30_fs1_gradient_boosting_none
+2026-11-13 23:34:32,601 INFO Building configuration w30_fs0p5
+2026-11-13 23:34:49,470 INFO   469 records usable, 0 excluded
+2026-11-13 23:34:49,479 INFO   CV w30_fs0p5_logistic_none
+2026-11-13 23:35:04,305 INFO   CV w30_fs0p5_gradient_boosting_none

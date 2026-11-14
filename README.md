@@ -22,7 +22,7 @@ The system is built on the public **CTU-CHB Intrapartum Cardiotocography Databas
 | Evaluation | Held-out test + stratified 5-fold CV + bootstrap CIs + paired AUC comparison |
 | Backend | FastAPI + Pydantic, CSV/JSON CTG uploads |
 | Frontend | React 19 + Vite, mobile-first |
-| Tests | 93 pytest tests |
+| Tests | 105 pytest tests |
 
 **Headline result (held-out test, 7 cesareans / 76 vaginal):** the CTG-only 1D CNN achieved ROC-AUC 0.797 (95% CI 0.660–0.914); the multimodal model achieved 0.733 (0.551–0.910); the new CTG-only CNN-BiLSTM achieved 0.720 (0.453–0.938) but the highest PR-AUC (0.450). The paired AUC difference between the CNN-BiLSTM and the 1D CNN was −0.077 (95% CI −0.331 to +0.167), so the experiment does not establish a statistically meaningful improvement. At validation-selected thresholds, the multimodal model detected 3/7 cesareans with 12/76 false positives. A majority-class classifier reaches 91.6% accuracy while detecting no cesareans. These results are exploratory, imprecise, and not clinically usable. See `reports/model_evaluation_report.md` and `reports/technical_report.md`.
 
@@ -70,6 +70,15 @@ project/
 │   │   ├── baseline.py
 │   │   └── calibration.py      # Platt scaling (pickle-safe)
 │   ├── training/train.py       # final training + 5-fold CV
+│   ├── phase_a/                # additive Phase A data-handling experiments
+│   │   ├── run.py              # staged CLI (quality/window/sampling/features/deep/report)
+│   │   ├── quality.py          # per-record CTG quality audit
+│   │   ├── signals.py          # anti-aliased window extraction and masks
+│   │   ├── features.py         # clinical + CTG feature assembly
+│   │   ├── selection.py        # fold-specific feature selectors and stability
+│   │   ├── experiment.py       # fixed folds, CV runners, metrics
+│   │   ├── plots.py
+│   │   └── report.py
 │   └── evaluation/
 │       ├── evaluate.py         # held-out metrics, CIs, figures, report
 │       ├── metrics.py
@@ -80,6 +89,7 @@ project/
 ├── data/processed/             # generated; safe to rebuild
 ├── models/                     # checkpoints, calibrators, model card
 ├── reports/                    # metrics, figures, reports
+├── experiments/phase_a/        # Phase A outputs, comparison tables, figures, logs
 ├── samples/                    # sample and synthetic CTG uploads
 ├── docs/hospital_integration.md
 ├── requirements.txt
@@ -205,6 +215,32 @@ python -m src.training.train --help
 ```
 
 Options include `--variant {multimodal,signal,bilstm,clinical}`, `--cv`, `--epochs`, `--batch-size`, `--lr`, `--patience`, and `--seed`.
+
+### 5.2 Phase A — data-handling and preprocessing experiments
+
+Phase A is an additive research layer. It does not change the production preprocessing, the saved models, the API or the frontend. It reuses the raw recordings, the fixed split and the existing model architectures, and writes everything to `experiments/phase_a/`.
+
+```bash
+# Full Phase A pipeline (quality audit, window/sampling/feature experiments,
+# development-set CV comparison, deep-learning screening, report)
+python -m src.phase_a.run --stage all
+
+# Same without the CPU-expensive deep-learning screening
+python -m src.phase_a.run --stage all --no-dl
+
+# Individual stages (all are deterministic with seed 42)
+python -m src.phase_a.run --stage quality --force
+python -m src.phase_a.run --stage window
+python -m src.phase_a.run --stage sampling
+python -m src.phase_a.run --stage features
+python -m src.phase_a.run --stage compare
+python -m src.phase_a.run --stage report
+
+# Fast smoke run
+python -m src.phase_a.run --stage all --quick --force
+```
+
+All Phase A cross-validation uses only the 469 development records (`split` in `train`/`validation`). The 83 held-out test records are never loaded. Outputs include the per-record quality report, explicit exclusion lists, fixed fold assignments, per-fold selected features and stability, OOF predictions with bootstrap confidence intervals, comparison tables, and figures. The generated report is written to both the repository root and `experiments/phase_a/reports/PHASE_A_DATA_HANDLING_REPORT.md`.
 
 ---
 
@@ -351,9 +387,10 @@ The suite covers:
 - metric calculations and threshold selection;
 - model forward shapes, checkpoint loading, parameter counts, the CNN-BiLSTM architecture, calibrators, model-card consistency, and the paired AUC comparison;
 - CTG CSV/JSON validation and rejection paths;
-- API contracts, thresholds, error codes, demo records, sample downloads, and static hosting.
+- API contracts, thresholds, error codes, demo records, sample downloads, and static hosting;
+- Phase A quality audit, zero-padding, anti-aliased resampling, mask preservation, fractional-rate CTG features, fold-specific selectors, and the expanded metric set.
 
-Expected result with the included artefacts: **93 passed**. The tests do not modify the original dataset.
+Expected result with the included artefacts: **105 passed**. The tests do not modify the original dataset.
 
 ---
 

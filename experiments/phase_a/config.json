@@ -1,0 +1,45 @@
+{
+  "phase": "A",
+  "config": {
+    "seed": 42,
+    "windows": [
+      30,
+      45,
+      60
+    ],
+    "sampling_rates": [
+      4.0,
+      2.0,
+      1.0,
+      0.5
+    ],
+    "n_splits": 5,
+    "quality": {
+      "fhr_missing_good": 0.1,
+      "fhr_missing_acceptable": 0.3,
+      "uc_missing_good": 0.1,
+      "uc_missing_acceptable": 0.35,
+      "longest_gap_good_min": 2.0,
+      "longest_gap_acceptable_min": 10.0,
+      "implausible_good": 0.001,
+      "implausible_acceptable": 0.01,
+      "jump_rate_good": 0.003,
+      "jump_rate_acceptable": 0.006,
+      "flatline_good": 0.05,
+      "flatline_acceptable": 0.2,
+      "min_duration_good_min": 60.0,
+      "min_duration_acceptable_min": 30.0
+    },
+    "dl_epochs": 35,
+    "dl_patience": 8,
+    "dl_batch_size": 32,
+    "dl_learning_rate": 0.001,
+    "dl_weight_decay": 0.0001,
+    "run_deep_learning": true,
+    "run_test_confirmation": false
+  },
+  "environment": {
+    "python": "3.12.5",
+    "platform": "Windows-11-10.0.26300-SP0"
+  }
+}

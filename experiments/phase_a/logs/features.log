@@ -1,0 +1,39 @@
+2026-11-13 23:37:33,662 INFO Loaded cached configuration w30_fs1 (469 records)
+2026-11-13 23:37:34,195 INFO   CV w30_fs1_logistic_none
+2026-11-13 23:37:52,160 INFO   CV w30_fs1_gradient_boosting_none
+2026-11-13 23:38:10,761 INFO   CV w30_fs1_logistic_correlation
+2026-11-13 23:38:24,769 INFO   CV w30_fs1_gradient_boosting_correlation
+2026-11-13 23:38:42,649 INFO   CV w30_fs1_logistic_mutual_info
+2026-11-13 23:38:57,863 INFO   CV w30_fs1_gradient_boosting_mutual_info
+2026-11-13 23:39:17,869 INFO   CV w30_fs1_logistic_rfe
+2026-11-13 23:39:31,260 INFO   CV w30_fs1_gradient_boosting_rfe
+2026-11-13 23:39:50,097 INFO   CV w30_fs1_logistic_l1
+2026-11-13 23:40:00,954 INFO   CV w30_fs1_gradient_boosting_l1
+2026-11-13 23:40:18,578 INFO   CV w30_fs1_logistic_rf_importance
+2026-11-13 23:40:49,394 INFO   CV w30_fs1_gradient_boosting_rf_importance
+2026-11-13 23:43:16,306 INFO Loaded cached configuration w45_fs1 (466 records)
+2026-11-13 23:43:17,534 INFO   CV w45_fs1_logistic_none
+2026-11-13 23:43:30,908 INFO   CV w45_fs1_gradient_boosting_none
+2026-11-13 23:43:46,558 INFO   CV w45_fs1_logistic_correlation
+2026-11-13 23:44:00,220 INFO   CV w45_fs1_gradient_boosting_correlation
+2026-11-13 23:44:17,816 INFO   CV w45_fs1_logistic_mutual_info
+2026-11-13 23:44:33,217 INFO   CV w45_fs1_gradient_boosting_mutual_info
+2026-11-13 23:44:52,588 INFO   CV w45_fs1_logistic_rfe
+2026-11-13 23:45:07,045 INFO   CV w45_fs1_gradient_boosting_rfe
+2026-11-13 23:45:25,688 INFO   CV w45_fs1_logistic_l1
+2026-11-13 23:45:37,798 INFO   CV w45_fs1_gradient_boosting_l1
+2026-11-13 23:45:55,081 INFO   CV w45_fs1_logistic_rf_importance
+2026-11-13 23:46:25,189 INFO   CV w45_fs1_gradient_boosting_rf_importance
+2026-11-13 23:49:10,455 INFO Loaded cached configuration w60_fs1 (438 records)
+2026-11-13 23:49:11,729 INFO   CV w60_fs1_logistic_none
+2026-11-13 23:49:25,211 INFO   CV w60_fs1_gradient_boosting_none
+2026-11-13 23:49:42,459 INFO   CV w60_fs1_logistic_correlation
+2026-11-13 23:49:57,645 INFO   CV w60_fs1_gradient_boosting_correlation
+2026-11-13 23:50:13,175 INFO   CV w60_fs1_logistic_mutual_info
+2026-11-13 23:50:28,444 INFO   CV w60_fs1_gradient_boosting_mutual_info
+2026-11-13 23:50:47,230 INFO   CV w60_fs1_logistic_rfe
+2026-11-13 23:51:01,273 INFO   CV w60_fs1_gradient_boosting_rfe
+2026-11-13 23:51:21,174 INFO   CV w60_fs1_logistic_l1
+2026-11-13 23:51:30,945 INFO   CV w60_fs1_gradient_boosting_l1
+2026-11-13 23:51:48,564 INFO   CV w60_fs1_logistic_rf_importance
+2026-11-13 23:52:16,724 INFO   CV w60_fs1_gradient_boosting_rf_importance
