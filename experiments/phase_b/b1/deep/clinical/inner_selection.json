@@ -1,0 +1,458 @@
+{
+  "variant": "clinical",
+  "inner_folds": 3,
+  "selection_metric": "mean inner-fold AUROC (AUPRC tie-break)",
+  "selection_loss": "weighted_bce",
+  "outer_folds": {
+    "1": {
+      "outer_fold": 1,
+      "selected_learning_rate": 0.001,
+      "selected_epochs": 6,
+      "selected_inner_auroc": 0.38834177010378385,
+      "selected_inner_auprc": 0.14733408486554944,
+      "threshold_from_inner": 0.6473960876464844,
+      "candidates": [
+        {
+          "learning_rate": 0.001,
+          "mean_auroc": 0.38834177010378385,
+          "mean_auprc": 0.14733408486554944,
+          "mean_best_epoch": 5.666666666666667,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.2778260869565217,
+              "auprc": 0.05835030285451327,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.4956521739130435,
+              "auprc": 0.3062745042289843,
+              "sensitivity": 0.5,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.3915470494417863,
+              "auprc": 0.07737744751315079,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.6473960876464844
+        },
+        {
+          "learning_rate": 0.0005,
+          "mean_auroc": 0.3741855627210318,
+          "mean_auprc": 0.11011028543217409,
+          "mean_best_epoch": 5.666666666666667,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.2673913043478261,
+              "auprc": 0.05940405352898402,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.47478260869565214,
+              "auprc": 0.19534127132182444,
+              "sensitivity": 0.4,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.38038277511961727,
+              "auprc": 0.07558553144571377,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.5675921440124512
+        }
+      ],
+      "n_inner_train": 375,
+      "selection_loss": "weighted_bce"
+    },
+    "2": {
+      "outer_fold": 2,
+      "selected_learning_rate": 0.001,
+      "selected_epochs": 15,
+      "selected_inner_auroc": 0.6596049742273999,
+      "selected_inner_auprc": 0.2451464408419033,
+      "threshold_from_inner": 0.445332407951355,
+      "candidates": [
+        {
+          "learning_rate": 0.001,
+          "mean_auroc": 0.6596049742273999,
+          "mean_auprc": 0.2451464408419033,
+          "mean_best_epoch": 14.666666666666666,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.5856521739130435,
+              "auprc": 0.1055435285484032,
+              "sensitivity": 0.4,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.7021739130434783,
+              "auprc": 0.40286182885518573,
+              "sensitivity": 0.6,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6909888357256778,
+              "auprc": 0.22703396512212096,
+              "sensitivity": 0.6363636363636364,
+              "best_epoch": 14,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.445332407951355
+        },
+        {
+          "learning_rate": 0.0005,
+          "mean_auroc": 0.6548175114994338,
+          "mean_auprc": 0.19356880334703772,
+          "mean_best_epoch": 14.666666666666666,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.6265217391304347,
+              "auprc": 0.11714481000186668,
+              "sensitivity": 0.8,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.6804347826086957,
+              "auprc": 0.3068009571577759,
+              "sensitivity": 0.6,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6574960127591707,
+              "auprc": 0.15676064288147057,
+              "sensitivity": 0.7272727272727273,
+              "best_epoch": 14,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.5011563301086426
+        }
+      ],
+      "n_inner_train": 375,
+      "selection_loss": "weighted_bce"
+    },
+    "3": {
+      "outer_fold": 3,
+      "selected_learning_rate": 0.001,
+      "selected_epochs": 10,
+      "selected_inner_auroc": 0.6018822088158472,
+      "selected_inner_auprc": 0.16120878847163364,
+      "threshold_from_inner": 0.49618253111839294,
+      "candidates": [
+        {
+          "learning_rate": 0.001,
+          "mean_auroc": 0.6018822088158472,
+          "mean_auprc": 0.16120878847163364,
+          "mean_best_epoch": 10.333333333333334,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.6460869565217391,
+              "auprc": 0.1974679126839296,
+              "sensitivity": 0.7,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.5056521739130435,
+              "auprc": 0.09073934188064622,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6539074960127591,
+              "auprc": 0.19541911085032504,
+              "sensitivity": 0.6363636363636364,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.49618253111839294
+        },
+        {
+          "learning_rate": 0.0005,
+          "mean_auroc": 0.5836227261170052,
+          "mean_auprc": 0.14535631700243112,
+          "mean_best_epoch": 10.333333333333334,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.58,
+              "auprc": 0.1766245635186075,
+              "sensitivity": 0.7,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.507391304347826,
+              "auprc": 0.08767000719817822,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6634768740031898,
+              "auprc": 0.17177438029050765,
+              "sensitivity": 0.8181818181818182,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.5443956851959229
+        }
+      ],
+      "n_inner_train": 375,
+      "selection_loss": "weighted_bce"
+    },
+    "4": {
+      "outer_fold": 4,
+      "selected_learning_rate": 0.001,
+      "selected_epochs": 14,
+      "selected_inner_auroc": 0.5865143425097659,
+      "selected_inner_auprc": 0.12335802183814887,
+      "threshold_from_inner": 0.4946211278438568,
+      "candidates": [
+        {
+          "learning_rate": 0.001,
+          "mean_auroc": 0.5865143425097659,
+          "mean_auprc": 0.12335802183814887,
+          "mean_best_epoch": 14.0,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.5878260869565217,
+              "auprc": 0.10488241933299566,
+              "sensitivity": 0.5,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.5560869565217391,
+              "auprc": 0.148851782800361,
+              "sensitivity": 0.6,
+              "best_epoch": 13,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6156299840510366,
+              "auprc": 0.11633986338108998,
+              "sensitivity": 0.36363636363636365,
+              "best_epoch": 14,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.4946211278438568
+        },
+        {
+          "learning_rate": 0.0005,
+          "mean_auroc": 0.5493620414673047,
+          "mean_auprc": 0.11006468006201497,
+          "mean_best_epoch": 15.0,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.4747826086956522,
+              "auprc": 0.07878901385352999,
+              "sensitivity": 0.9,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.5752173913043478,
+              "auprc": 0.13305220762998043,
+              "sensitivity": 0.6,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.598086124401914,
+              "auprc": 0.11835281870253452,
+              "sensitivity": 0.36363636363636365,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.5029086470603943
+        }
+      ],
+      "n_inner_train": 375,
+      "selection_loss": "weighted_bce"
+    },
+    "5": {
+      "outer_fold": 5,
+      "selected_learning_rate": 0.001,
+      "selected_epochs": 10,
+      "selected_inner_auroc": 0.5982758939509512,
+      "selected_inner_auprc": 0.16651457216813545,
+      "threshold_from_inner": 0.4393947422504425,
+      "candidates": [
+        {
+          "learning_rate": 0.001,
+          "mean_auroc": 0.5982758939509512,
+          "mean_auprc": 0.16651457216813545,
+          "mean_best_epoch": 10.333333333333334,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.65098814229249,
+              "auprc": 0.18501508536591774,
+              "sensitivity": 0.45454545454545453,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 126
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.4795652173913044,
+              "auprc": 0.08331876158160903,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 251,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.664274322169059,
+              "auprc": 0.23120986955687958,
+              "sensitivity": 0.7272727272727273,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 251,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.4393947422504425
+        },
+        {
+          "learning_rate": 0.0005,
+          "mean_auroc": 0.5855449229133439,
+          "mean_auprc": 0.16167741573759048,
+          "mean_best_epoch": 10.333333333333334,
+          "folds": [
+            {
+              "inner_fold": 1,
+              "auroc": 0.6162055335968379,
+              "auprc": 0.16030606026355537,
+              "sensitivity": 0.45454545454545453,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 250,
+              "n_val": 126
+            },
+            {
+              "inner_fold": 2,
+              "auroc": 0.4865217391304347,
+              "auprc": 0.08533797931510127,
+              "sensitivity": 0.0,
+              "best_epoch": 1,
+              "epochs_run": 6,
+              "n_train": 251,
+              "n_val": 125
+            },
+            {
+              "inner_fold": 3,
+              "auroc": 0.6539074960127591,
+              "auprc": 0.23938820763411478,
+              "sensitivity": 0.7272727272727273,
+              "best_epoch": 15,
+              "epochs_run": 15,
+              "n_train": 251,
+              "n_val": 125
+            }
+          ],
+          "threshold": 0.5303092002868652
+        }
+      ],
+      "n_inner_train": 376,
+      "selection_loss": "weighted_bce"
+    }
+  }
+}

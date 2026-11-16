@@ -1,0 +1,113 @@
+{
+  "fold": {
+    "fold": 2,
+    "n_train": 375,
+    "n_val": 94,
+    "n_cesarean_train": 31,
+    "n_cesarean_val": 8,
+    "learning_rate": 0.001,
+    "epochs": 11,
+    "inner_threshold": 0.16503208875656128,
+    "n": 94,
+    "n_positive": 8,
+    "n_negative": 86,
+    "prevalence": 0.0851063829787234,
+    "threshold": 0.5,
+    "accuracy": 0.6808510638297872,
+    "balanced_accuracy": 0.5988372093023255,
+    "precision": 0.13333333333333333,
+    "recall_sensitivity": 0.5,
+    "specificity": 0.6976744186046512,
+    "npv": 0.9375,
+    "f1": 0.21052631578947367,
+    "auroc": 0.6584302325581395,
+    "auprc": 0.16452110494594077,
+    "mcc": 0.11832978485781222,
+    "brier": 0.2102511931370606,
+    "ece": 0.3103658372258886,
+    "tp": 4,
+    "fp": 26,
+    "tn": 60,
+    "fn": 4,
+    "confusion_matrix": {
+      "tn": 60,
+      "fp": 26,
+      "fn": 4,
+      "tp": 4
+    },
+    "sensitivity_inner_threshold": 0.875,
+    "specificity_inner_threshold": 0.19767441860465115
+  },
+  "training": {
+    "config": {
+      "variant": "signal",
+      "strategy": "focal_gamma1",
+      "learning_rate": 0.001,
+      "epochs": 11,
+      "batch_size": 32,
+      "weight_decay": 0.0001,
+      "patience": 5,
+      "augment": "none",
+      "seed": 2042
+    },
+    "info": {
+      "best_epoch": 11,
+      "best_val_loss": NaN,
+      "epochs_run": 11,
+      "n_parameters": 58009
+    },
+    "class_counts": {
+      "negative": 344,
+      "positive": 31
+    },
+    "class_weights": {
+      "0": 0.5450581395348837,
+      "1": 6.048387096774194
+    },
+    "positive_weight": 11.096774193548388,
+    "sampler_weights": null,
+    "preprocessing": {
+      "signal_scaler": {
+        "fhr_mean": 131.004638671875,
+        "fhr_std": 24.372148513793945,
+        "uc_mean": 22.09366798400879,
+        "uc_std": 23.4288387298584
+      },
+      "clinical_means": {
+        "age": 29.72533333333333,
+        "gravidity": 1.432,
+        "parity": 0.39466666666666667,
+        "gest_weeks": 39.95466666666667
+      },
+      "clinical_stds": {
+        "age": 4.46219955726869,
+        "gravidity": 1.105158812117064,
+        "parity": 0.6764403562440339,
+        "gest_weeks": 1.1503383077261324
+      },
+      "clinical_medians": {
+        "age": 30.0,
+        "gravidity": 1.0,
+        "parity": 0.0,
+        "gest_weeks": 40.0
+      },
+      "clinical_output_names": [
+        "age",
+        "gravidity",
+        "parity",
+        "gest_weeks",
+        "diabetes",
+        "hypertension",
+        "preeclampsia",
+        "liquor_praecox",
+        "pyrexia",
+        "meconium",
+        "induced",
+        "presentation_1",
+        "presentation_2",
+        "presentation_3",
+        "presentation_missing"
+      ]
+    }
+  }
+}

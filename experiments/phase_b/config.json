@@ -1,0 +1,53 @@
+{
+  "phase": "B",
+  "config": {
+    "seed": 42,
+    "window_min": 30,
+    "target_fs": 1.0,
+    "outer_folds": 5,
+    "inner_folds": 3,
+    "deep_inner_epochs": 15,
+    "deep_outer_epochs": 25,
+    "deep_patience": 5,
+    "deep_batch_size": 32,
+    "deep_weight_decay": 0.0001,
+    "deep_lr_grid": [
+      0.0005,
+      0.001
+    ],
+    "deep_variants": [
+      "signal",
+      "bilstm",
+      "multimodal",
+      "clinical"
+    ],
+    "deep_strategies": [
+      "plain_bce",
+      "weighted_bce",
+      "focal_gamma1",
+      "focal_gamma2",
+      "weighted_sampling"
+    ],
+    "classical_models": [
+      "logistic",
+      "gradient_boosting"
+    ],
+    "classical_strategies": [
+      "none",
+      "class_weight",
+      "random_oversample",
+      "smote"
+    ],
+    "augment_modes": [
+      "none",
+      "gaussian",
+      "mix"
+    ],
+    "default_threshold": 0.5,
+    "bootstrap_samples": 1000
+  },
+  "environment": {
+    "python": "3.12.5",
+    "platform": "Windows-11-10.0.26300-SP0"
+  }
+}
