@@ -41,5 +41,10 @@ experiments/phase_a/cache/
 !experiments/phase_a/logs/
 !experiments/phase_a/logs/*.log
 
+# Phase B per-fold checkpoints are large and rebuildable. Metrics,
+# predictions, comparison tables, figures, logs and the report are kept.
+experiments/phase_b/**/*.pt
+experiments/phase_b/cache/
+
 # Unrelated local course documents
 /w*.docx
