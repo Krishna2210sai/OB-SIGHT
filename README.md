@@ -6,7 +6,7 @@ OB-SIGHT investigates whether intrapartum cardiotocography (CTG) and maternal cl
 
 The system is built on the public **CTU-UHB Intrapartum Cardiotocography Database v1.0.0** (PhysioNet, DOI `10.13026/C22013`). It does **not** diagnose fetal distress and does **not** recommend a delivery mode. Version 1.0.0 of this database contains no expert CTG annotations, so fetal-status classification is not a valid target for this data.
 
-> **Research status.** The production prototype and **Phase A** are implemented. **Phase B (Stages B0 and B1)** is implemented and has been run locally, but it has not been committed or pushed, and its research audit is still pending. B2, B3, Phase C and Phase D are planned. See [Section J](#j-future-research-roadmap).
+> **Research status.** The production prototype and **Phase A** are implemented. **Phase B (Stages B0 and B1)** is implemented and its experiment artefacts are committed to this repository, but its research audit is still pending. Its results are development-set cross-validation estimates only, not held-out test or clinical validation results. B2, B3, Phase C and Phase D are planned. See [Section J](#j-future-research-roadmap).
 
 ---
 
@@ -40,8 +40,8 @@ The target is delivery mode, **not** fetal status. The database release has an e
 |---|---|
 | Production pipeline: preprocessing, four deep models, four classical baselines, calibration, evaluation, API, frontend | Implemented and documented |
 | Phase A: data-quality, window, sampling-frequency and feature-selection experiments | **Completed**; committed |
-| Phase B, Stage B0: baseline reproduction on the development set | **Implemented and run locally**; not pushed |
-| Phase B, Stage B1: imbalance-aware learning | **Implemented and run locally**; research audit pending; not pushed |
+| Phase B, Stage B0: baseline reproduction on the development set | **Implemented and committed**; research audit pending |
+| Phase B, Stage B1: imbalance-aware learning | **Implemented and committed**; research audit pending |
 | Phase B audit, B2 architecture optimisation, B3 multimodal fusion | Planned |
 | Phase C independent external validation | Planned; external dataset access and delivery-mode label availability are still being investigated |
 | Phase D application integration and clinical expert feedback | Planned |
@@ -435,9 +435,9 @@ This configuration was retained by the Phase A **selection procedure**, not beca
 
 ## F. Phase B — Model optimisation and imbalance-aware learning
 
-> **IMPLEMENTED LOCALLY — RESEARCH AUDIT PENDING — NOT YET PUSHED TO GITHUB.**
+> **IMPLEMENTED — RESEARCH AUDIT PENDING — DEVELOPMENT CROSS-VALIDATION ONLY.**
 >
-> Phase B code (`src/phase_b/`), tests (`tests/test_phase_b.py`) and artefacts (`experiments/phase_b/`) exist only in the local working tree. Nothing in Phase B has been committed or pushed. The results below are **development-set, out-of-fold cross-validation estimates**, not held-out test performance and not clinically validated findings. The planned research audit (multi-seed checks, calibration review, independent review of the selection rule) has not yet been completed.
+> Phase B code (`src/phase_b/`), tests (`tests/test_phase_b.py`) and artefacts (`experiments/phase_b/`) are included in this repository. The results below are **development-set, out-of-fold cross-validation estimates**, not held-out test performance, not external validation, and not clinically validated findings. The planned research audit (multi-seed checks, calibration review, independent review of the selection rule) has not yet been completed.
 
 Phase B is an additive research layer under `src/phase_b/`. It reuses the existing architectures, the Phase A 30-minute / 1 Hz preprocessing, the Phase A fold assignments and the existing loss and metric conventions. The complete methodology, per-fold tables, confidence intervals, calibration results and limitations are in [`experiments/phase_b/reports/PHASE_B_IMBALANCE_REPORT.md`](experiments/phase_b/reports/PHASE_B_IMBALANCE_REPORT.md).
 
@@ -667,7 +667,7 @@ These are reported explicitly rather than omitted:
 | **CPU-only training** | Epoch budgets are limited by runtime. Deep results are bitwise reproducible only at a fixed thread count (`PHASE_B_THREADS=3`); a different thread count changed pooled PR-AUC by about 0.016 in a control run. |
 | **Custom tabular SMOTE** | `imbalanced-learn` is not installed; the local SMOTE implementation is tested but may differ slightly from the reference library. |
 | **Multiple comparisons** | Paired p-values are unadjusted; some “significant” findings are expected by chance. |
-| **Phase B not audited or published** | Phase B is local-only, uncommitted and not pushed; its results have not completed independent research review. |
+| **Phase B audit pending** | Phase B is committed but has not completed independent research review, multi-seed checks or external validation; its results are development cross-validation estimates only. |
 
 ---
 
@@ -823,7 +823,7 @@ project/
 ├── models/                     # checkpoints, calibrators, model card
 ├── reports/                    # metrics, figures, reports
 ├── experiments/phase_a/        # Phase A outputs, comparison tables, figures, logs
-├── experiments/phase_b/        # Phase B outputs (local only; not pushed)
+├── experiments/phase_b/        # Phase B outputs and imbalance report
 ├── samples/                    # sample and synthetic CTG uploads
 ├── docs/hospital_integration.md
 ├── requirements.txt
@@ -1057,7 +1057,7 @@ For a deployment-oriented discussion (FHIR/HL7, security, governance), see [`doc
 | Phase | Status | Planned scope |
 |---|---|---|
 | **Phase A** — data handling and preprocessing | **Completed** | Quality audit, window/sampling/feature-selection experiments, fixed 30 min / 1 Hz / no-selection configuration |
-| **Phase B, B0–B1** — baseline reproduction and imbalance learning | **Implemented locally; audit pending** | B0 reproduction, five deep strategies, four classical strategies, exploratory augmentation, nested CV, paired comparisons |
+| **Phase B, B0–B1** — baseline reproduction and imbalance learning | **Implemented; audit pending** | B0 reproduction, five deep strategies, four classical strategies, exploratory augmentation, nested CV, paired comparisons |
 | **Phase B final audit** | Planned | Multi-seed variance study, calibration and threshold review, multiplicity handling, independent code/results review, commit and publication decision |
 | **B2 — architecture optimisation** | Planned | Receptive-field and sequence-model tuning, regularisation and capacity controls, principled hyperparameter search within CPU limits |
 | **B3 — multimodal fusion optimisation** | Planned | Fusion strategy, missingness-aware clinical encoding, modality dropout, calibration of the fused model |
@@ -1083,7 +1083,7 @@ External dataset access and the availability of delivery-mode labels in candidat
 | [`docs/teacher_presentation.md`](docs/teacher_presentation.md) | 8-slide outline, 5–6 minute spoken script, one-page handout and viva Q&A |
 | [`docs/hospital_integration.md`](docs/hospital_integration.md) | Hypothetical integration, security and governance considerations |
 
-The Phase B report is present locally but is **not yet published to GitHub**, because Phase B has not been committed or pushed.
+The Phase B report is included in this repository. It documents development-set cross-validation experiments whose research audit is still pending; it is not an external-validation or clinical-validation report.
 
 ---
 
